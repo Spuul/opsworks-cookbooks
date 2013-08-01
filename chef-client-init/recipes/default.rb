@@ -19,7 +19,7 @@
 
 include_recipe "chef-client::config"
 
-return if node["chef-client-init"]["validation"].nil? || node["chef-client-init"]["first_boot"].nil?
+return if node["chef_client_init"]["validation"].nil? || node["chef_client_init"]["first_boot"].nil?
 
 return unless File.exists("#{node["chef_client"]["conf_dir"]}/client.rb")
 
