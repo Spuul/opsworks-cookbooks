@@ -1,3 +1,3 @@
-default["chef-client-init"]["validation"]=nil
-default["chef-client-init"]["first_boot"]=nil
-default["chef-client-init"]["environment"]="development"
+default["chef_client_init"]["validation"]=nil
+default["chef_client_init"]["first_boot"]=nil
+default["chef_client_init"]["environment"]="development"

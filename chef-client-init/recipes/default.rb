@@ -27,19 +27,19 @@ file "#{node["chef_client"]["conf_dir"]}/validation.pem" do
     owner "root"
     group "root"
     mode "0400"
-    content node["chef-client-init"]["validation"]
+    content node["chef_client_init"]["validation"]
     action :create
 end
 file "#{node["chef_client"]["conf_dir"]}/first_boot.json" do
     owner "root"
     group "root"
     mode "0400"
-    content node["chef-client-init"]["first_boot"]
+    content node["chef_client_init"]["first_boot"]
     action :create
 end
 
 execute "chef-init" do
-    command "#{node["chef-cllient"]["bin"]} -j #{node["chef_client"]["conf_dir"]}/first_boot.json -E #{node["chef-client-init"]["environment"]}"
+    command "#{node["chef_client"]["bin"]} -j #{node["chef_client"]["conf_dir"]}/first_boot.json -E #{node["chef_client_init"]["environment"]}"
     action :run
 end
 
