@@ -21,7 +21,7 @@ include_recipe "chef-client::config"
 
 return if node["chef_client_init"]["validation"].nil? || node["chef_client_init"]["first_boot"].nil?
 
-return unless File.exists("#{node["chef_client"]["conf_dir"]}/client.rb")
+return unless File.exists?("#{node["chef_client"]["conf_dir"]}/client.rb")
 
 file "#{node["chef_client"]["conf_dir"]}/validation.pem" do
     owner "root"
