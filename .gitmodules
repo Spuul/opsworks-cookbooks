@@ -1,3 +1,6 @@
 [submodule "chef-client"]
 	path = chef-client
 	url = https://github.com/opscode-cookbooks/chef-client.git
+[submodule "cron"]
+	path = cron
+	url = https://github.com/opscode-cookbooks/cron.git
