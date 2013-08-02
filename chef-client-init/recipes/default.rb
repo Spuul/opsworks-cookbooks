@@ -21,11 +21,8 @@ include_recipe "chef-client::config"
 
 Chef::Log.info("chef-client-init :: validation.pem is empty") if node["chef_client_init"]["validation"].nil?
 Chef::Log.info("chef-client-init :: no first boot data") if node["chef_client_init"]["first_boot"].nil?
-Chef::Log.info("chef-client-init :: #{node["chef_client"]["conf_dir"]}/client.rb does not exists") unless File.exists?("#{node["chef_client"]["conf_dir"]}/client.rb")
 
 return if node["chef_client_init"]["validation"].nil? || node["chef_client_init"]["first_boot"].nil?
-
-return unless File.exists?("#{node["chef_client"]["conf_dir"]}/client.rb")
 
 file "#{node["chef_client"]["conf_dir"]}/validation.pem" do
     owner "root"
@@ -46,6 +43,7 @@ execute "chef-init" do
     Chef::Log.info("chef-client-init :: Running #{node["chef_client"]["bin"]}")
     command "#{node["chef_client"]["bin"]} -j #{node["chef_client"]["conf_dir"]}/first_boot.json -E #{node["chef_client_init"]["environment"]}"
     action :run
+    only_if File.exists?("#{node["chef_client"]["conf_dir"]}/client.rb")
 end
 
 include_recipe "chef-client::default"
