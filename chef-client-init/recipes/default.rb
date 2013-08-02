@@ -43,7 +43,7 @@ execute "chef-init" do
     Chef::Log.info("chef-client-init :: Running #{node["chef_client"]["bin"]}")
     command "#{node["chef_client"]["bin"]} -j #{node["chef_client"]["conf_dir"]}/first_boot.json -E #{node["chef_client_init"]["environment"]}"
     action :run
-    only_if File.exists?("#{node["chef_client"]["conf_dir"]}/client.rb")
+    only_if { ::File.exists?("#{node["chef_client"]["conf_dir"]}/client.rb") }
 end
 
 include_recipe "chef-client::default"
